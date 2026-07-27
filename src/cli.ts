@@ -13,6 +13,7 @@ import { init } from './commands/init.js';
 import { doctor } from './commands/doctor.js';
 import { telemetry, type TelemetryArgs } from './commands/telemetry.js';
 import * as tele from './telemetry/index.js';
+import { maybeNotifyUpdate } from './util/update-notice.js';
 import { createRequire } from 'node:module';
 import * as log from './util/log.js';
 import type { Scope } from './types.js';
@@ -346,6 +347,9 @@ async function main(): Promise<void> {
     log.error(err instanceof Error ? err.message : String(err));
     process.exit(1);
   }
+
+  // After a successful command, surface a once-a-day update notice (never for hooks).
+  if (!isHookCall) await maybeNotifyUpdate(VERSION);
 }
 
 main();

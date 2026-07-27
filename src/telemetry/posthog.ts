@@ -10,15 +10,22 @@
  * https://eu.i.posthog.com.
  */
 
+// PostHog Cloud region host. US project -> us.i.posthog.com, EU -> eu.i.posthog.com.
+// This MUST match the region the project was created in, or events are rejected.
 const DEFAULT_HOST = 'https://us.i.posthog.com';
-const EMBEDDED_KEY = 'phc_REPLACE_WITH_YOUR_POSTHOG_PROJECT_KEY';
+const EMBEDDED_KEY = 'phc_vE2RE5kPqKXw6sFyTqTGJ57PnH3sotBAut6RhkCkL25u';
 
 /** Per-request wall-clock cap so a slow/offline network never stalls the CLI. */
 const CAPTURE_TIMEOUT_MS = 1200;
 
-/** Resolve the active key, or '' when none is configured (telemetry stays dark). */
+/**
+ * Resolve the active key, or '' when none is configured (telemetry stays dark).
+ * An explicitly-set SKILLMAX_POSTHOG_KEY always wins over the embedded default —
+ * even when set to empty, which is the supported way to disable the baked-in key.
+ */
 export function posthogKey(): string {
-  const k = (process.env.SKILLMAX_POSTHOG_KEY || EMBEDDED_KEY).trim();
+  const override = process.env.SKILLMAX_POSTHOG_KEY;
+  const k = (override !== undefined ? override : EMBEDDED_KEY).trim();
   return k.startsWith('phc_REPLACE') ? '' : k;
 }
 

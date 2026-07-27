@@ -148,6 +148,8 @@ skillmaxxing telemetry on       # opt back in
 - **Never collected:** your code, file paths, prompts, skill contents, or anything personal.
 - **Always respected:** `DO_NOT_TRACK=1`, `CI`, and `SKILLMAX_TELEMETRY=off` disable it with no config needed. Nothing is sent from the background reflector's own CLI calls.
 
+skillmaxxing also checks npm for a newer version at most once a day and prints a one-line update notice (it never self-updates). Disable with `SKILLMAX_NO_UPDATE_CHECK=1`.
+
 ## 🗺️ Roadmap
 
 | Capability | Status |

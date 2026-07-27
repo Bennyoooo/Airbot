@@ -18,6 +18,9 @@ export const SKILLS_GUIDANCE = [
   '',
   'Rules of thumb:',
   '- Prefer UPDATING an existing skill over creating a near-duplicate (search first).',
+  '- Scope it right (avoid skill pollution): default to PROJECT scope; add -g for',
+  '  user/global ONLY when the skill transfers to ANY codebase. A skill about THIS',
+  "  repo's build/layout/conventions stays project-local. When unsure, keep it local.",
   '- New and changed skills are recorded trusted:false until the user approves them.',
   '- Keep it conservative: one high-value skill beats five shallow ones.',
 ].join('\n');

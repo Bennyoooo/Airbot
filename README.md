@@ -1,8 +1,4 @@
-<p align="center">
-  <img src="assets/hero.svg" alt="SKILLMAXXING" width="760">
-</p>
-
-<h1 align="center">SkillMaxxing</h1>
+<h1 align="center">Airbot</h1>
 
 <p align="center">
   <b>Self-evolving skills for your coding agent.</b><br>
@@ -22,7 +18,7 @@
 
 Every coding agent starts every task from zero. It solves the same gnarly migration, re-derives the same release flow, re-learns the same repo quirk — and forgets it the moment the session ends.
 
-**Skill Maxing makes the forgetting stop.** It hooks into your agent so that, after real work, the agent reflects on what it just did and crystallizes the reusable parts into a **skill** — or improves a skill it already has. Over days, your agent gets measurably better at *your* codebase. That's a self-evolving agent, and it takes one line to turn on.
+**Airbot makes the forgetting stop.** It hooks into your agent so that, after real work, the agent reflects on what it just did and crystallizes the reusable parts into a **skill** — or improves a skill it already has. Over days, your agent gets measurably better at *your* codebase. That's a self-evolving agent, and it takes one line to turn on.
 
 Inspired by the [Hermes Agent](https://github.com/NousResearch/hermes-agent) self-improvement loop, adapted to run on the hooks that Claude Code, Codex, and other agents already expose.
 
@@ -49,7 +45,7 @@ Works without installing anything globally; the hooks fall back to a version-pin
 ### Claude Code marketplace (alternative)
 
 ```text
-/plugin marketplace add Bennyoooo/skillmaxxing
+/plugin marketplace add Bennyoooo/Airbot
 /plugin install skillmaxxing
 ```
 
@@ -72,7 +68,7 @@ skillmaxxing plugin uninstall   # remove the hooks
 
 ## 🧠 How it works
 
-Skill Maxing installs just two hooks. You do nothing — the loop runs itself.
+Airbot installs just two hooks. You do nothing — the loop runs itself.
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
@@ -89,7 +85,7 @@ Skill Maxing installs just two hooks. You do nothing — the loop runs itself.
 
 There's no per-tool hook — work is counted from the session transcript at Stop — so the agent stays fast on every install path. This mirrors Hermes' layers:
 
-| Hermes | Skill Maxing |
+| Hermes | Airbot |
 |--------|--------------|
 | Always-on system-prompt nudge | **SessionStart** hook injects skill-creation guidance |
 | Background review after N iterations | **Stop** hook counts transcript tool calls and forks a headless reflector past a threshold |

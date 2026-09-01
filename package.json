@@ -1,9 +1,10 @@
 {
-  "name": "skillmaxxing",
+  "name": "airbot-cli",
   "version": "0.1.4",
   "description": "Self-evolving skills for your coding agent — auto-create and auto-improve skills as you work, no trigger needed.",
   "type": "module",
   "bin": {
+    "airbot": "./dist/cli.js",
     "skillmaxxing": "./dist/cli.js",
     "skill-maxing": "./dist/cli.js",
     "skillmax": "./dist/cli.js"
@@ -25,10 +26,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Bennyoooo/skillmaxxing.git"
+    "url": "git+https://github.com/Bennyoooo/Airbot.git"
   },
-  "homepage": "https://github.com/Bennyoooo/skillmaxxing#readme",
-  "bugs": "https://github.com/Bennyoooo/skillmaxxing/issues",
+  "homepage": "https://github.com/Bennyoooo/Airbot#readme",
+  "bugs": "https://github.com/Bennyoooo/Airbot/issues",
   "keywords": [
     "ai",
     "agents",

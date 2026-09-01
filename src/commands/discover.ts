@@ -90,5 +90,5 @@ export async function discover(args: DiscoverArgs): Promise<void> {
       truncate(r.description, 50),
     ]),
   ]);
-  log.info(`Install one with: skillmaxxing discover "${args.query}" --install <name>`);
+  log.info(`Install one with: airbot discover "${args.query}" --install <name>`);
 }

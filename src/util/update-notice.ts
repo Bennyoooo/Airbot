@@ -10,7 +10,7 @@ import { ensureDir } from './fs.js';
  * and never changes anything. Disable with SKILLMAX_NO_UPDATE_CHECK=1.
  */
 
-const PKG = 'skillmaxxing';
+const PKG = 'airbot-cli';
 const DIST_TAGS_URL = `https://registry.npmjs.org/-/package/${PKG}/dist-tags`;
 const CHECK_INTERVAL_MS = 24 * 60 * 60 * 1000;
 const FETCH_TIMEOUT_MS = 1500;
@@ -80,8 +80,8 @@ async function fetchLatest(): Promise<string | null> {
 
 function printNotice(latest: string, current: string): void {
   process.stderr.write(
-    `\nskillmaxxing ${current} → ${latest} available.\n` +
-      `  update: npm i -g skillmaxxing@latest   (npx users: npx skillmaxxing@latest plugin install)\n\n`,
+    `\nairbot ${current} → ${latest} available.\n` +
+      `  update: npm i -g airbot-cli@latest   (npx users: npx airbot-cli@latest plugin install)\n\n`,
   );
 }
 

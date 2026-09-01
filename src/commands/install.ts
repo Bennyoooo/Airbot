@@ -61,7 +61,7 @@ export async function install(args: InstallArgs): Promise<void> {
       continue;
     }
 
-    // A skill already recorded in our lock is managed by skillmaxxing and may be
+    // A skill already recorded in our lock is managed by airbot and may be
     // refreshed (this is the `update` path). An on-disk skill we do NOT track is
     // unmanaged — refuse to clobber it (it may be a locally-optimized skill)
     // unless --force (review C2).
@@ -78,7 +78,7 @@ export async function install(args: InstallArgs): Promise<void> {
 
       if (fileExists(destDir) && !tracked && !args.force) {
         log.warn(
-          `${skill.name} already exists at ${destDir} and is not managed by Skill Maxing. ` +
+          `${skill.name} already exists at ${destDir} and is not managed by Airbot. ` +
             `Use --force to overwrite. Skipping.`,
         );
         continue;

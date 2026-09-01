@@ -6,15 +6,15 @@
  * that fires when the agent forgets.
  */
 export const SKILLS_GUIDANCE = [
-  'Skill Maxing is active: you can make yourself permanently better at this codebase.',
+  'Airbot is active: you can make yourself permanently better at this codebase.',
   '',
   'After you finish a non-trivial task — a multi-step workflow, a tricky fix, or a',
   'procedure you would repeat — crystallize it as a reusable skill:',
-  '  skillmaxxing skillify --draft <draft.json>   # then review and: --commit <name>',
+  '  airbot skillify --draft <draft.json>   # then review and: --commit <name>',
   '',
   'When you USE a skill and find it outdated, wrong, or missing a step, improve it',
   'immediately instead of working around it:',
-  '  skillmaxxing optimize <action> ...           # eval-gated; promotes only on a strict win',
+  '  airbot optimize <action> ...           # eval-gated; promotes only on a strict win',
   '',
   'Rules of thumb:',
   '- Prefer UPDATING an existing skill over creating a near-duplicate (search first).',
@@ -28,7 +28,7 @@ export const SKILLS_GUIDANCE = [
 /** Shorter reminder used by the Stop hook in nudge mode after substantive work. */
 export const REFLECT_NUDGE = [
   'You just completed a substantial chunk of work. Before moving on, consider:',
-  'is any of it a reusable workflow worth saving as a skill (skillmaxxing skillify),',
-  'or did you use a skill that should be improved (skillmaxxing optimize)?',
+  'is any of it a reusable workflow worth saving as a skill (airbot skillify),',
+  'or did you use a skill that should be improved (airbot optimize)?',
   'Prefer updating an existing skill over creating a new one. Skip if nothing is reusable.',
 ].join(' ');

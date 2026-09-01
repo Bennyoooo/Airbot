@@ -39,7 +39,7 @@ export function isEnabled(): boolean {
 
 function baseProps(version: string, extra: Record<string, unknown> = {}): Record<string, unknown> {
   return {
-    $lib: 'skillmaxxing-cli',
+    $lib: 'airbot-cli',
     version,
     os: process.platform,
     arch: process.arch,
@@ -92,7 +92,7 @@ async function promptOnce(c: TelemetryConfig, version: string): Promise<void> {
     try {
       const ans = (
         await rl.question(
-          'skillmaxxing can send anonymous usage stats (no code, no paths) to improve the tool. Enable? [Y/n] ',
+          'airbot can send anonymous usage stats (no code, no paths) to improve the tool. Enable? [Y/n] ',
         )
       )
         .trim()
@@ -112,12 +112,12 @@ async function promptOnce(c: TelemetryConfig, version: string): Promise<void> {
 
   if (!interactive) {
     process.stderr.write(
-      'skillmaxxing: anonymous usage telemetry is on by default — disable any time with `skillmaxxing telemetry off`\n',
+      'airbot: anonymous usage telemetry is on by default — disable any time with `airbot telemetry off`\n',
     );
   } else if (enable) {
-    process.stdout.write('Thanks! Telemetry on. Turn it off any time: skillmaxxing telemetry off\n');
+    process.stdout.write('Thanks! Telemetry on. Turn it off any time: airbot telemetry off\n');
   } else {
-    process.stdout.write('No telemetry. Enable later with: skillmaxxing telemetry on\n');
+    process.stdout.write('No telemetry. Enable later with: airbot telemetry on\n');
   }
 
   if (enable && isEnabled()) {

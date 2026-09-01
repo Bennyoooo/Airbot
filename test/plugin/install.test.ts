@@ -108,7 +108,7 @@ test('legacy per-tool hook from an older install is cleaned up', async () => {
 test('reflect prompt names the transcript and recursion guard reads env', () => {
   const prompt = reflect.buildReflectionPrompt('/tmp/session.jsonl');
   assert.match(prompt, /\/tmp\/session\.jsonl/);
-  assert.match(prompt, /skillmaxxing/);
+  assert.match(prompt, /airbot/);
   assert.equal(reflect.isReflecting(), false);
   process.env[reflect.REFLECT_ENV] = '1';
   assert.equal(reflect.isReflecting(), true);

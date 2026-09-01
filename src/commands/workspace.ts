@@ -30,7 +30,7 @@ function channelOf(value: string | undefined, fallback?: Channel): Channel | und
 
 export async function workspace(args: WorkspaceArgs): Promise<void> {
   if (!args.registryDir) {
-    log.error('Usage: skillmaxxing workspace <action> --registry <dir> [options]');
+    log.error('Usage: airbot workspace <action> --registry <dir> [options]');
     process.exitCode = 1;
     return;
   }

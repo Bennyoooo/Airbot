@@ -3,14 +3,14 @@
     "SessionStart": [
       {
         "hooks": [
-          { "type": "command", "command": "npx -y skillmaxxing plugin guidance" }
+          { "type": "command", "command": "npx -y airbot-cli plugin guidance" }
         ]
       }
     ],
     "Stop": [
       {
         "hooks": [
-          { "type": "command", "command": "npx -y skillmaxxing plugin on-stop --agent claude --mode auto --threshold 10" }
+          { "type": "command", "command": "npx -y airbot-cli plugin on-stop --agent claude --mode auto --threshold 10" }
         ]
       }
     ]

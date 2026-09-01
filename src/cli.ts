@@ -69,12 +69,12 @@ function parseFlags(argv: string[]): { positional: string[]; flags: Record<strin
 }
 
 function printHelp(): void {
-  console.log(`skillmaxxing v${VERSION}
+  console.log(`airbot v${VERSION}
 
 Self-evolving skills for your coding agent — auto-create and auto-improve skills as you work.
 
 Usage:
-  skillmaxxing <command> [options]
+  airbot <command> [options]
 
 Commands:
   plugin <action>     Self-evolving plugin: install|uninstall|status (hooks, no trigger)
@@ -104,14 +104,14 @@ Options:
   --version           Show version
 
 Examples:
-  skillmaxxing plugin install                  Turn on self-evolving skills (no trigger needed)
-  skillmaxxing plugin install --agent codex    Enable it for Codex
-  skillmaxxing install owner/repo              Install skills from GitHub
-  skillmaxxing install ./my-skills -g          Install local skills globally
-  skillmaxxing discover "code review"          Find a skill by intent
-  skillmaxxing list                            List all installed skills
-  skillmaxxing doctor                          Check health
-  skillmaxxing doctor --fix                     Remove dangling skills + reconcile state
+  airbot plugin install                  Turn on self-evolving skills (no trigger needed)
+  airbot plugin install --agent codex    Enable it for Codex
+  airbot install owner/repo              Install skills from GitHub
+  airbot install ./my-skills -g          Install local skills globally
+  airbot discover "code review"          Find a skill by intent
+  airbot list                            List all installed skills
+  airbot doctor                          Check health
+  airbot doctor --fix                     Remove dangling skills + reconcile state
 `);
 }
 
@@ -151,7 +151,7 @@ async function main(): Promise<void> {
       case 'i': {
         const source = positional[1];
         if (!source) {
-          log.error('Usage: skillmaxxing install <source>');
+          log.error('Usage: airbot install <source>');
           process.exit(1);
         }
         await install({ source, agents, scope, copy: flags.copy === true, force: flags.force === true });
@@ -163,7 +163,7 @@ async function main(): Promise<void> {
       case 'find': {
         const query = positional.slice(1).join(' ');
         if (!query) {
-          log.error('Usage: skillmaxxing discover "<what you want>" [--repo owner/repo] [--install <name>]');
+          log.error('Usage: airbot discover "<what you want>" [--repo owner/repo] [--install <name>]');
           process.exit(1);
         }
         const repos = typeof flags.repo === 'string' ? flags.repo.split(',') : undefined;
@@ -205,7 +205,7 @@ async function main(): Promise<void> {
       case 'opt': {
         const action = positional[1] as OptimizeArgs['action'];
         if (!action) {
-          log.error('Usage: skillmaxxing optimize <score|apply|gate|promote|revert> [options]');
+          log.error('Usage: airbot optimize <score|apply|gate|promote|revert> [options]');
           process.exit(1);
         }
         const num = (k: string): number | undefined => {
@@ -246,7 +246,7 @@ async function main(): Promise<void> {
       case 'ws': {
         const action = positional[1] as WorkspaceArgs['action'];
         if (!action) {
-          log.error('Usage: skillmaxxing workspace <publish|sync|list|pool|promote> --registry <dir> [options]');
+          log.error('Usage: airbot workspace <publish|sync|list|pool|promote> --registry <dir> [options]');
           process.exit(1);
         }
         const str = (k: string): string | undefined =>
@@ -272,7 +272,7 @@ async function main(): Promise<void> {
       case 'plugin': {
         const action = positional[1] as PluginArgs['action'];
         if (!action) {
-          log.error('Usage: skillmaxxing plugin <install|uninstall|status> [--agent claude|codex] [--mode auto|nudge] [--threshold N] [--project]');
+          log.error('Usage: airbot plugin <install|uninstall|status> [--agent claude|codex] [--mode auto|nudge] [--threshold N] [--project]');
           process.exit(1);
         }
         const pAgent = agentFlag === 'codex' ? 'codex' : agentFlag === 'claude' ? 'claude' : undefined;
@@ -301,7 +301,7 @@ async function main(): Promise<void> {
       case 'rm': {
         const names = positional.slice(1);
         if (names.length === 0) {
-          log.error('Usage: skillmaxxing remove <skill-name> [skill-name...]');
+          log.error('Usage: airbot remove <skill-name> [skill-name...]');
           process.exit(1);
         }
         await remove({ names, agent: agentFlag, scope: flags.global === true ? 'global' : undefined });

@@ -73,7 +73,7 @@ test('notifies from cache when a newer version is known', async () => {
   seedCache('9.9.9');
   const out = await captureStderr(() => mod.maybeNotifyUpdate('0.1.4'));
   assert.match(out, /9\.9\.9 available/);
-  assert.match(out, /npm i -g skillmaxxing@latest/);
+  assert.match(out, /npm i -g airbot-cli@latest/);
 });
 
 test('stays silent from cache when already current', async () => {

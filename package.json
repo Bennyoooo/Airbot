@@ -1,6 +1,6 @@
 {
   "name": "skillmaxxing",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Self-evolving skills for your coding agent — auto-create and auto-improve skills as you work, no trigger needed.",
   "type": "module",
   "bin": {

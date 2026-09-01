@@ -68,7 +68,7 @@ export async function skillify(args: SkillifyArgs): Promise<void> {
   }
 
   if (!args.draftPath) {
-    log.error('Usage: airbot skillify --draft <draft.json> | --commit <name> | --list-drafts');
+    log.error('Usage: skillmaxxing skillify --draft <draft.json> | --commit <name> | --list-drafts');
     process.exitCode = 1;
     return;
   }
@@ -96,5 +96,5 @@ export async function skillify(args: SkillifyArgs): Promise<void> {
   if (res.smokePassed === true) log.success('Smoke test passed.');
   else if (res.smokePassed === false) log.warn('Smoke test failed.');
   else if (res.detail) log.info(res.detail);
-  log.info(`Review it, then commit: airbot skillify --commit ${draft.name}`);
+  log.info(`Review it, then commit: skillmaxxing skillify --commit ${draft.name}`);
 }

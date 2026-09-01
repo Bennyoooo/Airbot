@@ -29,7 +29,7 @@ Inspired by the [Hermes Agent](https://github.com/NousResearch/hermes-agent) sel
 ### Recommended — one line, works on any machine
 
 ```bash
-npm i -g airbot-cli && airbot plugin install
+npm i -g skillmaxxing && skillmaxxing plugin install
 ```
 
 Installs the CLI globally and wires the hooks to it. Restart your agent session and you're done — **you never have to invoke anything.** Fast, persistent, and works on every laptop.
@@ -37,7 +37,7 @@ Installs the CLI globally and wires the hooks to it. Restart your agent session 
 ### No global install (npx)
 
 ```bash
-npx airbot-cli plugin install
+npx skillmaxxing plugin install
 ```
 
 Works without installing anything globally; the hooks fall back to a version-pinned `npx` call. Great for trying it out — for daily use prefer the global install (the `npx` hook adds a little latency at each turn-end).
@@ -46,13 +46,13 @@ Works without installing anything globally; the hooks fall back to a version-pin
 
 ```text
 /plugin marketplace add Bennyoooo/Airbot
-/plugin install airbot
+/plugin install skillmaxxing
 ```
 
 ### Codex / other agents
 
 ```bash
-npm i -g airbot-cli && airbot plugin install --agent codex
+npm i -g skillmaxxing && skillmaxxing plugin install --agent codex
 ```
 
 Codex has no programmatic stop hook, so self-evolution runs **in-session** via standing guidance written to `AGENTS.md`. Claude Code gets the full background loop below.
@@ -62,8 +62,8 @@ Codex has no programmatic stop hook, so self-evolution runs **in-session** via s
 Manage it any time:
 
 ```bash
-airbot plugin status      # is it active?
-airbot plugin uninstall   # remove the hooks
+skillmaxxing plugin status      # is it active?
+skillmaxxing plugin uninstall   # remove the hooks
 ```
 
 ## 🧠 How it works
@@ -101,7 +101,7 @@ Two key Hermes ideas carry straight over: the reflector **prefers updating an ex
 | `nudge` | The agent is reminded to crystallize the workflow itself, in-session | You want zero extra processes / full visibility |
 
 ```bash
-npx airbot-cli plugin install --mode nudge --threshold 12
+npx skillmaxxing plugin install --mode nudge --threshold 12
 ```
 
 The background reflector is **recursion-guarded** (it can never trigger itself) and **detached** (it never blocks your session). Every skill it writes is `trusted: false` and never auto-executes until you grant trust.
@@ -113,13 +113,13 @@ Everything above is built on two CLI primitives the reflector (or you) can call 
 **Create** — turn a workflow into a tested skill:
 
 ```bash
-airbot skillify --draft draft.json    # stage → smoke-test → review → --commit
+skillmaxxing skillify --draft draft.json    # stage → smoke-test → review → --commit
 ```
 
 **Improve** — make an existing skill measurably better, safely:
 
 ```bash
-airbot optimize <score|apply|gate|promote|revert>
+skillmaxxing optimize <score|apply|gate|promote|revert>
 ```
 
 `optimize` is an **eval-gated** loop (rollout → reflect → bounded edit → validate): a candidate is promoted only on a strict score win with no regression, every version is retained, and any change is reversible.
@@ -132,19 +132,19 @@ airbot optimize <score|apply|gate|promote|revert>
 
 ## 📊 Privacy & telemetry
 
-Airbot collects **anonymous, aggregate** usage to know what to improve. You're asked once on first run (and can change your mind any time):
+skillmaxxing collects **anonymous, aggregate** usage to know what to improve. You're asked once on first run (and can change your mind any time):
 
 ```bash
-airbot telemetry status   # see what's on and where the config lives
-airbot telemetry off      # opt out
-airbot telemetry on       # opt back in
+skillmaxxing telemetry status   # see what's on and where the config lives
+skillmaxxing telemetry off      # opt out
+skillmaxxing telemetry on       # opt back in
 ```
 
 - **Collected:** a random install ID, version, OS, which agent, command names, and counts of skill create/optimize/promote/revert and error *types*.
 - **Never collected:** your code, file paths, prompts, skill contents, or anything personal.
 - **Always respected:** `DO_NOT_TRACK=1`, `CI`, and `SKILLMAX_TELEMETRY=off` disable it with no config needed. Nothing is sent from the background reflector's own CLI calls.
 
-Airbot also checks npm for a newer version at most once a day and prints a one-line update notice (it never self-updates). Disable with `SKILLMAX_NO_UPDATE_CHECK=1`.
+skillmaxxing also checks npm for a newer version at most once a day and prints a one-line update notice (it never self-updates). Disable with `SKILLMAX_NO_UPDATE_CHECK=1`.
 
 ## 🗺️ Roadmap
 
@@ -156,7 +156,7 @@ Airbot also checks npm for a newer version at most once a day and prints a one-l
 | Discover skills from public sources | 🧰 CLI ready — landing in the plugin next |
 | Team workspace: share + collaboratively optimize | 🧰 CLI ready — landing in the plugin next |
 
-Discovery and team sharing already exist as CLI commands (`airbot discover`, `airbot workspace`); they're intentionally held out of the v1 plugin surface to keep the install dead-simple.
+Discovery and team sharing already exist as CLI commands (`skillmaxxing discover`, `skillmaxxing workspace`); they're intentionally held out of the v1 plugin surface to keep the install dead-simple.
 
 ## 🛠️ Develop
 

@@ -1,9 +1,9 @@
 {
-  "name": "airbot",
+  "name": "skillmaxxing",
   "owner": { "name": "Benny Jiang", "url": "https://github.com/Bennyoooo" },
   "plugins": [
     {
-      "name": "airbot",
+      "name": "skillmaxxing",
       "source": "./",
       "description": "Self-evolving skills for your coding agent — auto-create and auto-improve skills as you work, no trigger needed."
     }

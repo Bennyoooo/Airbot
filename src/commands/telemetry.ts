@@ -5,7 +5,7 @@ export interface TelemetryArgs {
   action?: 'on' | 'off' | 'status';
 }
 
-/** Manage anonymous usage telemetry: `airbot telemetry on|off|status`. */
+/** Manage anonymous usage telemetry: `skillmaxxing telemetry on|off|status`. */
 export function telemetry(args: TelemetryArgs): void {
   const action = args.action ?? 'status';
   const existing = loadConfig();
@@ -15,7 +15,7 @@ export function telemetry(args: TelemetryArgs): void {
     cfg.enabled = true;
     cfg.prompted = true;
     saveConfig(cfg);
-    log.success('Telemetry enabled (anonymous only). Disable any time: airbot telemetry off');
+    log.success('Telemetry enabled (anonymous only). Disable any time: skillmaxxing telemetry off');
     if (!posthogKey()) log.dim('Note: no analytics backend is configured in this build, so nothing is sent yet.');
     return;
   }
@@ -29,7 +29,7 @@ export function telemetry(args: TelemetryArgs): void {
   }
 
   if (action === 'status') {
-    log.heading('airbot telemetry');
+    log.heading('skillmaxxing telemetry');
     if (!existing) {
       log.info(`Status:   not yet configured${suppressed() ? ' (suppressed by environment)' : " — you'll be asked on first run"}`);
     } else {

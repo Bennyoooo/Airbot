@@ -40,7 +40,7 @@ export async function init(args: InitArgs): Promise<void> {
   const name = args.name ?? 'my-skill';
 
   const agents = await detectInstalledAgents();
-  log.heading('airbot init');
+  log.heading('skillmaxxing init');
   log.info(`Detected agents: ${agents.length > 0 ? agents.map(a => a.displayName).join(', ') : 'none'}`);
 
   const skillDir = path.join(dir, name);
@@ -54,5 +54,5 @@ export async function init(args: InitArgs): Promise<void> {
   fs.writeFileSync(path.join(skillDir, 'SKILL.md'), skillMd);
 
   log.success(`Created ${skillDir}/SKILL.md`);
-  log.info(`Edit the SKILL.md, then run: airbot install ./${name}`);
+  log.info(`Edit the SKILL.md, then run: skillmaxxing install ./${name}`);
 }

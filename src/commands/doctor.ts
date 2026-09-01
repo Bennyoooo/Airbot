@@ -19,7 +19,7 @@ export interface DoctorArgs {
 }
 
 export async function doctor(args: DoctorArgs = {}): Promise<void> {
-  log.heading('airbot doctor');
+  log.heading('skillmaxxing doctor');
   let issues = 0;
 
   log.heading('Agent Detection');
@@ -95,11 +95,11 @@ export async function doctor(args: DoctorArgs = {}): Promise<void> {
   if (issues === 0) {
     log.success('No issues found.');
   } else if (args.fix) {
-    log.info(`Cleaned what could be auto-fixed. Re-run 'airbot doctor' to confirm.`);
+    log.info(`Cleaned what could be auto-fixed. Re-run 'skillmaxxing doctor' to confirm.`);
   } else {
     log.warn(
-      `${issues} issue(s) found. Run 'airbot doctor --fix' to clean dangling skills, ` +
-        `or 'airbot update' to refresh stale installs.`,
+      `${issues} issue(s) found. Run 'skillmaxxing doctor --fix' to clean dangling skills, ` +
+        `or 'skillmaxxing update' to refresh stale installs.`,
     );
   }
 }

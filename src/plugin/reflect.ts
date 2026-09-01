@@ -26,7 +26,7 @@ export const REFLECT_TIMEOUT_MS = 5 * 60 * 1000;
 export const REFLECT_MAX_TURNS = 25;
 
 const ALLOWED_TOOLS =
-  'Read,Glob,Grep,Write,Edit,Bash(airbot:*),Bash(skillmaxxing:*),Bash(skill-maxing:*),Bash(skillmax:*),Bash(npx:*)';
+  'Read,Glob,Grep,Write,Edit,Bash(skillmaxxing:*),Bash(skill-maxing:*),Bash(skillmax:*),Bash(npx:*)';
 
 export function isReflecting(): boolean {
   return process.env[REFLECT_ENV] === '1';
@@ -34,7 +34,7 @@ export function isReflecting(): boolean {
 
 export function buildReflectionPrompt(transcriptPath: string): string {
   return [
-    'You are the Airbot background reflector. Review the coding session transcript at:',
+    'You are the Skill Maxing background reflector. Review the coding session transcript at:',
     `  ${transcriptPath}`,
     '',
     'Decide whether the session contains EITHER:',
@@ -43,19 +43,19 @@ export function buildReflectionPrompt(transcriptPath: string): string {
     '',
     'If neither, do nothing and exit — most sessions should produce no skill.',
     'If one applies, take exactly ONE action, conservatively:',
-    '  - First search existing skills: `airbot discover "<capability>" --json`.',
+    '  - First search existing skills: `skillmaxxing discover "<capability>" --json`.',
     '  - PREFER updating an existing skill over creating a near-duplicate.',
     '  - To create: write a draft JSON (name, description, body, optional scripts, and a',
     '    REQUIRED eval scaffold — at least one scorable task; an agent-judge task with a',
-    '    rubric is fine for prose) then `airbot skillify --draft <file> --commit <name>`.',
+    '    rubric is fine for prose) then `skillmaxxing skillify --draft <file> --commit <name>`.',
     '    A skill with no eval task is rejected, so the loop can grade it later.',
     '  - CHOOSE SCOPE (avoid skill pollution): default to PROJECT scope. Add `-g` for',
     '    user/global scope ONLY if the skill transfers to ANY codebase — e.g. a general',
     '    language/framework technique, a debugging method, a git workflow. A skill about',
     '    THIS repo (its build, layout, deps, conventions) stays project-local. When unsure,',
-    '    keep it project-local: `airbot skillify --draft <file> --commit <name>` (add',
+    '    keep it project-local: `skillmaxxing skillify --draft <file> --commit <name>` (add',
     '    `-g` only for the reusable case).',
-    '  - To improve: run the eval-gated `airbot optimize` loop.',
+    '  - To improve: run the eval-gated `skillmaxxing optimize` loop.',
     '',
     'New/changed skills are recorded trusted:false for the user to review. Do NOT modify',
     'project source code. Do NOT install or execute untrusted skills. One skill at most.',
@@ -82,7 +82,7 @@ export function spawnReflector(opts: {
       env: process.env,
       detached: true,
       stdio: 'ignore',
-      shell: true, // cli may be a multi-token "npx -y airbot-cli@x"
+      shell: true, // cli may be a multi-token "npx -y skillmaxxing@x"
     });
     child.unref();
     return true;

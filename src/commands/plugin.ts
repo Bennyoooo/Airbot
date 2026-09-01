@@ -45,9 +45,9 @@ function pkgVersion(): string {
  * Resolve a command that will reliably invoke this CLI from inside a hook on ANY
  * machine, indefinitely — the hook must never point at a binary that disappears.
  * Priority:
- *   1. Running as a real GLOBAL install -> bare `airbot` (fast, persistent).
+ *   1. Running as a real GLOBAL install -> bare `skillmaxxing` (fast, persistent).
  *   2. A stable bin on PATH that is NOT an ephemeral npx-cache bin -> use it.
- *   3. Otherwise -> `npx -y airbot-cli@<version>` (self-sufficient, no global
+ *   3. Otherwise -> `npx -y skillmaxxing@<version>` (self-sufficient, no global
  *      install needed; pinned for reproducibility). `persistent:false` so the
  *      installer can recommend a global install for speed.
  */
@@ -55,11 +55,11 @@ function resolveCli(): { cmd: string; persistent: boolean } {
   const here = fileURLToPath(import.meta.url);
   try {
     const globalRoot = fs.realpathSync(execSync('npm root -g', { encoding: 'utf-8' }).trim());
-    if (here.startsWith(globalRoot + path.sep)) return { cmd: 'airbot', persistent: true };
+    if (here.startsWith(globalRoot + path.sep)) return { cmd: 'skillmaxxing', persistent: true };
   } catch {
     /* npm not available — fall through */
   }
-  for (const bin of ['airbot', 'skillmaxxing', 'skill-maxing', 'skillmax']) {
+  for (const bin of ['skillmaxxing', 'skill-maxing', 'skillmax']) {
     try {
       const p = execSync(`command -v ${bin}`, { encoding: 'utf-8' }).trim();
       if (p && !fs.realpathSync(p).includes(`${path.sep}_npx${path.sep}`)) {
@@ -69,7 +69,7 @@ function resolveCli(): { cmd: string; persistent: boolean } {
       /* not on PATH */
     }
   }
-  return { cmd: `npx -y airbot-cli@${pkgVersion()}`, persistent: false };
+  return { cmd: `npx -y skillmaxxing@${pkgVersion()}`, persistent: false };
 }
 
 function readStdin(): Record<string, unknown> {
@@ -156,7 +156,7 @@ function install(args: PluginArgs): void {
 
   writeJson(file, settings);
 
-  log.success(`Airbot installed for Claude Code (${mode} mode).`);
+  log.success(`Skill Maxing installed for Claude Code (${mode} mode).`);
   log.info(`  hooks written to ${file}`);
   log.info(`  SessionStart: standing skill-creation guidance`);
   log.info(
@@ -167,11 +167,11 @@ function install(args: PluginArgs): void {
   if (!persistent) {
     log.warn(
       'Hooks use `npx` (no global install found) — adds latency at each turn end. ' +
-        'For best speed: npm i -g airbot-cli && airbot plugin install',
+        'For best speed: npm i -g skillmaxxing && skillmaxxing plugin install',
     );
   }
   log.info('No explicit trigger needed — restart your agent session to activate.');
-  log.info('Uninstall any time with: airbot plugin uninstall');
+  log.info('Uninstall any time with: skillmaxxing plugin uninstall');
 }
 
 const CODEX_MARK_START = '<!-- skill-maxing:start -->';
@@ -187,11 +187,11 @@ function installCodex(): void {
   } catch {
     /* new file */
   }
-  const block = `${CODEX_MARK_START}\n## Airbot\n\n${SKILLS_GUIDANCE}\n${CODEX_MARK_END}`;
+  const block = `${CODEX_MARK_START}\n## Skill Maxing\n\n${SKILLS_GUIDANCE}\n${CODEX_MARK_END}`;
   const re = new RegExp(`${CODEX_MARK_START}[\\s\\S]*?${CODEX_MARK_END}`);
   body = re.test(body) ? body.replace(re, block) : `${body.trimEnd()}\n\n${block}\n`;
   fs.writeFileSync(file, body.replace(/^\n+/, ''));
-  log.success('Airbot installed for Codex (guidance written to AGENTS.md).');
+  log.success('Skill Maxing installed for Codex (guidance written to AGENTS.md).');
   log.info('Codex has no Stop hook; self-evolution runs in-session via standing guidance.');
 }
 
@@ -203,7 +203,7 @@ function uninstall(args: PluginArgs): void {
       const body = fs.readFileSync(file, 'utf-8');
       const re = new RegExp(`\\n*${CODEX_MARK_START}[\\s\\S]*?${CODEX_MARK_END}\\n*`);
       fs.writeFileSync(file, body.replace(re, '\n'));
-      log.success('Removed Airbot guidance from AGENTS.md.');
+      log.success('Removed Skill Maxing guidance from AGENTS.md.');
     } catch {
       log.info('Nothing to uninstall.');
     }
@@ -220,7 +220,7 @@ function uninstall(args: PluginArgs): void {
     }
   }
   writeJson(file, settings);
-  log.success(`Removed Airbot hooks from ${file}.`);
+  log.success(`Removed Skill Maxing hooks from ${file}.`);
 }
 
 function status(args: PluginArgs): void {
@@ -232,9 +232,9 @@ function status(args: PluginArgs): void {
     if (groups.some((g) => (g.hooks ?? []).some((h) => isOurHook(h.command)))) owned.push(k);
   }
   if (owned.length > 0) {
-    log.success(`Airbot is active for Claude Code: ${owned.join(', ')} hooks (${file}).`);
+    log.success(`Skill Maxing is active for Claude Code: ${owned.join(', ')} hooks (${file}).`);
   } else {
-    log.info('Airbot is not installed for Claude Code. Run: airbot plugin install');
+    log.info('Skill Maxing is not installed for Claude Code. Run: skillmaxxing plugin install');
   }
 }
 
@@ -274,7 +274,7 @@ function onStop(args: PluginArgs): void {
 
   if (mode === 'nudge') {
     // One-line reminder; the agent acts on the standing SessionStart guidance.
-    console.log(JSON.stringify({ systemMessage: `Airbot: ${REFLECT_NUDGE}` }));
+    console.log(JSON.stringify({ systemMessage: `Skill Maxing: ${REFLECT_NUDGE}` }));
     return;
   }
   if (transcriptPath) {

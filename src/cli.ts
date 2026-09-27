@@ -83,7 +83,7 @@ Commands:
   skillify            Create a skill from a draft (--draft/--commit/--list-drafts)
   optimize <action>   Eval-gated optimize: score|apply|gate|promote|revert
   workspace <action>  Team registry: publish|sync|list|pool|promote
-  list                List installed skills
+  list [--state]      List installed skills (--state adds origin/trust/lifecycle records)
   remove <names...>   Remove installed skills
   update [names...]   Update installed skills to latest
   init [name]         Create a new skill template
@@ -99,6 +99,7 @@ Options:
   --limit <n>         Max discover results (default 20)
   --install <name>    Install a named result (discover command)
   --json              Output as JSON (list/discover commands)
+  --state             Merge ~/.skillmax state records into list (origin, trusted, lifecycle)
   -y, --yes           Skip confirmation prompts
   -h, --help          Show help
   --version           Show version
@@ -110,6 +111,7 @@ Examples:
   skillmaxxing install ./my-skills -g          Install local skills globally
   skillmaxxing discover "code review"          Find a skill by intent
   skillmaxxing list                            List all installed skills
+  skillmaxxing list --state                    ...with origin/trust/lifecycle records
   skillmaxxing doctor                          Check health
   skillmaxxing doctor --fix                     Remove dangling skills + reconcile state
 `);
@@ -294,7 +296,12 @@ async function main(): Promise<void> {
 
       case 'list':
       case 'ls':
-        await list({ agent: agentFlag, scope: flags.global === true ? 'global' : undefined, json: flags.json === true });
+        await list({
+          agent: agentFlag,
+          scope: flags.global === true ? 'global' : undefined,
+          json: flags.json === true,
+          state: flags.state === true,
+        });
         break;
 
       case 'remove':
